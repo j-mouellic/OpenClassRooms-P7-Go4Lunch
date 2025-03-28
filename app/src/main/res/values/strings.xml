@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Go4Lunch</string>
+    <string name="app_name" translatable="false">Go4Lunch</string>
+
+    <!-- DETAILS ACTIVITY -->
+    <string name="workmate_joining_message">%1$s Is joining !</string>
+    <string name="action_call">CALL</string>
+    <string name="action_like">LIKE</string>
+    <string name="action_website">WEBSITE</string>
 </resources>

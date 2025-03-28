@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- DETAILS ACTIVITY -->
+    <string name="workmate_joining_message">%1$s se joint à nous !</string>
+    <string name="action_call">APPELER</string>
+    <string name="action_like">AIMER</string>
+    <string name="action_website">SITE WEB</string>
+</resources>
