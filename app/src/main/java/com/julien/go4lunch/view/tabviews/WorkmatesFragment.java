@@ -79,12 +79,12 @@ public class WorkmatesFragment extends Fragment {
 
             viewModel.fetchTodayLunches().observe(getViewLifecycleOwner(), lunches -> {
 
-                Map<Workmate, Lunch> lunchMap = new HashMap<>();
+                Map<String, Lunch> lunchMap = new HashMap<>();
 
                 // Associate lunch & workmate
                 for (Lunch lunch : lunches) {
-                    Log.i(TAG, "Workmate : " + lunch.getWorkmate());
-                    lunchMap.put(lunch.getWorkmate(), lunch);
+                    String workmateName = lunch.getWorkmate().getName();
+                    lunchMap.put(workmateName, lunch);
                 }
 
                 Log.i(TAG, "Lunch map size " + lunchMap.size());
@@ -93,7 +93,8 @@ public class WorkmatesFragment extends Fragment {
 
                 // Check if workmate is associated to a lunch ? lunch : null;
                 for (Workmate workmate : workmates){
-                    Lunch associatedLunch = lunchMap.get(workmate);
+                    String workmateName = workmate.getName();
+                    Lunch associatedLunch = lunchMap.get(workmateName);
                     WorkmateLunchPair pair = new WorkmateLunchPair(workmate, associatedLunch);
                     pairs.add(pair);
                 }
