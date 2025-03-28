@@ -1,4 +1,4 @@
-package com.julien.go4lunch.model;
+package com.julien.go4lunch.model.bo;
 
 import java.util.Objects;
 
