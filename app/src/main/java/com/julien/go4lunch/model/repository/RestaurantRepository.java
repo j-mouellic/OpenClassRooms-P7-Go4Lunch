@@ -67,6 +67,12 @@ public class RestaurantRepository {
         return retrofitService.getAllRestaurants(location, radius, type, API_KEY);
     }
 
+    public Call<ResultDetails> getCallRestaurantDetails(String placeId){
+        RetrofitService retrofitService = getService();
+
+        return retrofitService.getRestaurantDetails(API_KEY, placeId, RESTAURANT_DETAILS_FIELD);
+    }
+
     public LiveData<List<Restaurant>> getAllRestaurants(String location, Integer radius, String type) {
         MutableLiveData<List<Restaurant>> restaurantsLiveData = new MutableLiveData<>();
 
@@ -138,9 +144,7 @@ public class RestaurantRepository {
     public LiveData<Restaurant> getRestaurantDetail(String placeId) {
         MutableLiveData<Restaurant> restaurant = new MutableLiveData<>();
 
-        RetrofitService retrofitService = getService();
-
-        Call<ResultDetails> call = retrofitService.getRestaurantDetails(API_KEY, placeId, RESTAURANT_DETAILS_FIELD);
+        Call<ResultDetails> call = getCallRestaurantDetails(placeId);
 
         call.enqueue(new Callback<ResultDetails>() {
             @Override

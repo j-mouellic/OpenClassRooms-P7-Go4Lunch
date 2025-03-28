@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,15 +25,30 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="${GOOGLE_MAPS_API_KEY}" />
 
+        <receiver android:name="com.julien.go4lunch.utils.AlarmReceiver" />
+
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".view.AuthActivity"
+            android:theme="@style/Theme.Material3.DayNight.NoActionBar"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.tabviews.TabActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".view.DetailsActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
