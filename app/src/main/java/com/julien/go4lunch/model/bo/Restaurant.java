@@ -1,4 +1,4 @@
-package com.julien.go4lunch.model;
+package com.julien.go4lunch.model.bo;
 
 import com.julien.go4lunch.model.bo.place.Location;
 import com.julien.go4lunch.model.bo.place.Photo;
