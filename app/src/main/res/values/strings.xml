@@ -6,4 +6,32 @@
     <string name="action_call">CALL</string>
     <string name="action_like">LIKE</string>
     <string name="action_website">WEBSITE</string>
+
+    <!-- TAB ACTIVITY -->
+    <string name="menu_item_map_view">Map View</string>
+    <string name="menu_item_list_view">List View</string>
+    <string name="menu_item_workmates">Workmates</string>
+
+    <string name="nav_bar_title_restaurant">I\'m Hungry !</string>
+    <string name="nav_bar_title_workmates">Available Workmates</string>
+
+    <string name="hint_input_restaurant">Search Restaurants ...</string>
+    <string name="hint_input_workmates">Search Workmates ...</string>
+
+    <string name="logout_snack_bar">Logout failed</string>
+
+    <!-- WORKMATE ADAPTER -->
+    <string name="workmate_undecided_message">%1$s hasn\'t decide yet</string>
+    <string name="workmate_eating_message">%1$s is eating %2$s (%3$s)</string>
+
+    <!-- RESTAURANT ADAPTER -->
+    <string name="restaurant_is_opened"> is opened</string>
+    <string name="restaurant_is_closed"> is closed</string>
+
+    <!-- DRAWER -->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="drawer_action_your_lunch">Your Lunch</string>
+    <string name="drawer_action_settings">Settings</string>
+    <string name="drawer_action_logout">Logout</string>
 </resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:padding="8dp"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/wAvatar"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:background="@drawable/avatar_shape"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:backgroundTint="#407D90"
+        android:text="J" />
+
+    <TextView
+        android:id="@+id/wName"
+        android:layout_marginLeft="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:text="Hugh is eating french (Le Zinc)" />
+
+</LinearLayout>
