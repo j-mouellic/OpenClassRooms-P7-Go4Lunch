@@ -34,4 +34,26 @@
     <string name="drawer_action_your_lunch">Your Lunch</string>
     <string name="drawer_action_settings">Settings</string>
     <string name="drawer_action_logout">Logout</string>
+
+    <!-- NOTIFICATION -->
+    <string name="notification_message">Remember to go to lunch at %1$s restaurant in: %2$s with %3$s</string>
+
+    <!-- AUTH ACTIVITY -->
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="auth_snack_bar_success">Connection successful !</string>
+    <string name="auth_snack_bar_failed">Authentication was canceled.</string>
+    <string name="auth_snack_bar_internet_connection">No internet connection detected.</string>
+    <string name="auth_snack_bar_unknow_error">An unknown error occurred.</string>
+
+    <!-- SETTINGS ACTIVITY -->
+    <string name="title_settings">SETTINGS</string>
+    <string name="action_enable_notification">Enable notification</string>
 </resources>
