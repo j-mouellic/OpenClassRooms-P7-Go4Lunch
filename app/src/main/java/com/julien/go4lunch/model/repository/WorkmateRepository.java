@@ -91,7 +91,7 @@ public class WorkmateRepository {
                             Log.i(TAG, "Document not found - add user as workmate to FireStore : ");
                             addWorkmate(user);
                         } else {
-                            Log.e(TAG, "🔥 Error getOrCreateWorkmate : " + firestoreException);
+                            Log.e(TAG, "Error getOrCreateWorkmate : " + firestoreException);
                         }
                     }
                 });

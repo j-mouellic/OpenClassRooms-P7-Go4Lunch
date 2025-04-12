@@ -11,9 +11,12 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
 import com.julien.go4lunch.MainApplication;
 import com.julien.go4lunch.R;
+import com.julien.go4lunch.model.bo.Lunch;
 import com.julien.go4lunch.model.bo.Restaurant;
 import com.julien.go4lunch.model.bo.Workmate;
 import com.julien.go4lunch.model.repository.LunchRepository;
@@ -89,7 +92,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "ALARM TRIGGERED");
 
-        if (NOTIFICATION_DEBUG) {
+        /*if (NOTIFICATION_DEBUG) {
             Restaurant fakeRestaurant = new Restaurant();
             fakeRestaurant.setName("Fake Restaurant");
             fakeRestaurant.setAddress("Fake Address");
@@ -97,7 +100,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             List<String> userNames = Arrays.asList("Test1", "Test2", "Test3");
             sendMessage(context, fakeRestaurant, userNames);
             return;
-        }
+        }*/
 
         // Get the Workmate repository
         WorkmateRepository workmateRepository = WorkmateRepository.getInstance();
@@ -109,32 +112,46 @@ public class AlarmReceiver extends BroadcastReceiver {
         Workmate workmate = workmateRepository.getCurrentWorkmate();
         String workmateId = workmate.getUid();
 
-        if (workmate.isNotificationEnabled()) {
+        // Check if user enabled notification
+        workmateRepository.getIsNotificationEnabled().observeForever(new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isEnabled) {
+                workmateRepository.getIsNotificationEnabled().removeObserver(this);
 
-            // Get the restaurant chosen by the current user for today's lunch
-            lunchRepository.getTodayLunch(workmateId).observe(null, lunch -> {
-                if (lunch != null) {
-                    Restaurant restaurant = lunch.getRestaurant();
+                if (isEnabled != null && isEnabled) {
+                    lunchRepository.getTodayLunch(workmateId).observeForever(new Observer<Lunch>() {
+                        @Override
+                        public void onChanged(Lunch lunch) {
+                            lunchRepository.getTodayLunch(workmateId).removeObserver(this);
 
-                    // Get the list of workmates who have also already chosen the restaurant for today's lunch
-                    lunchRepository.fetchTodayWorkmatesAtRestaurant(restaurant).observe(null, workmates -> {
-                        if (workmates != null) {
-                            List<String> mUsersList = new ArrayList<>();
-                            for (Workmate w : workmates) {
-                                mUsersList.add(w.getName());
+                            if (lunch != null) {
+                                Restaurant restaurant = lunch.getRestaurant();
+                                lunchRepository.fetchTodayWorkmatesAtRestaurant(restaurant).observeForever(new Observer<List<Workmate>>() {
+                                    @Override
+                                    public void onChanged(List<Workmate> workmates) {
+                                        lunchRepository.fetchTodayWorkmatesAtRestaurant(restaurant).removeObserver(this);
+
+                                        if (workmates != null) {
+                                            List<String> names = new ArrayList<>();
+                                            for (Workmate w : workmates) {
+                                                names.add(w.getName());
+                                            }
+                                            sendMessage(context, restaurant, names);
+                                        } else {
+                                            Log.i(TAG, "Unable to get the list of the other workmates that are participants of that lunch");
+                                        }
+                                    }
+                                });
+                            } else {
+                                Log.i(TAG, "Current user does not have a lunch for today");
                             }
-                            sendMessage(context, restaurant, mUsersList);
                         }
-                        Log.e(TAG, "Unable to get the list of the other workmates that are participants of that lunch");
                     });
                 } else {
-                    Log.e(TAG, "Current user does not have a lunch for today");
+                    Log.i(TAG, "ALARM NOTIFICATION NOT SENT : Notification is not active");
                 }
-            });
-
-        } else {
-            Log.i(TAG, "ALARM NOTIFICATION NOT SENT : Notification is not active");
-        }
+            }
+        });
     }
 }
 

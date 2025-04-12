@@ -90,7 +90,7 @@ public class TabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
 
-        Seeder.initDbSeeding(this);
+        // Seeder.initDbSeeding(this);
 
         // Initialize utility references and fragments
         ta = this;
