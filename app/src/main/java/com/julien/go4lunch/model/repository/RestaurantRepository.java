@@ -203,7 +203,6 @@ public class RestaurantRepository {
 
                         restaurant.setValue(newRestaurant);
 
-                       // Log.i(TAG, "Successful API call : ResultDetails, restaurant name : " + newRestaurant.toString());
                     } else {
                         Log.e(TAG, "Restaurant detail : API response body is null. Unable to retrieve restaurant data.");
                     }

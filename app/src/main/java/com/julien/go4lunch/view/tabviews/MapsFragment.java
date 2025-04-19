@@ -99,7 +99,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
                 Log.i(TAG, "Current Position, Lat : " + latitude + " - Long : " + longitude);
 
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, mapZoom));
+                if (googleMap != null) {
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, mapZoom));
+                }
             }
         });
     }
@@ -215,13 +217,13 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         googleMap.setOnMarkerClickListener(marker -> {
             Restaurant restaurant = haspMap.get(marker);
 
-            if(restaurant != null){
+            if (restaurant != null) {
                 Log.i(TAG, "Marker is clicked - restaurant : " + restaurant.getName());
 
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
                 intent.putExtra("RESTAURANT", restaurant);
                 startActivity(intent);
-            }else{
+            } else {
                 Log.i(TAG, "Marker is clicked - restaurant : " + restaurant.getId());
             }
             return true;
@@ -269,7 +271,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
     public void onResume() {
         super.onResume();
         if (viewModel != null) {
-            if (!isLookingForPlaces){
+            if (!isLookingForPlaces) {
                 Log.i(TAG, "On Resume called - GPS refresh"); // à tester
                 viewModel.refresh();
             }

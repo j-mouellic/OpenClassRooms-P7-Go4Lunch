@@ -21,6 +21,7 @@ import com.julien.go4lunch.model.bo.Restaurant;
 import com.julien.go4lunch.model.bo.Workmate;
 import com.julien.go4lunch.model.repository.LunchRepository;
 import com.julien.go4lunch.model.repository.WorkmateRepository;
+import com.julien.go4lunch.view.DetailsActivity;
 import com.julien.go4lunch.view.tabviews.TabActivity;
 
 import java.util.ArrayList;
@@ -57,11 +58,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         );
 
         // Create intent
-        Intent newIntent = new Intent(context, TabActivity.class);
+        Intent newIntent = new Intent(context, DetailsActivity.class);
+        newIntent.putExtra("RESTAURANT", restaurant);
         newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         // Create pending intent
-        // (it allows you to execute an action in the future)
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, newIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Create notification

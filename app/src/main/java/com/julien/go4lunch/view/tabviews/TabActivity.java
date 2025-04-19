@@ -114,7 +114,7 @@ public class TabActivity extends AppCompatActivity {
         // GPS Location permissions
         askForPermission();
 
-        //
+        // Configure Alarm
         configureAlarm();
     }
 
